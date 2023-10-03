@@ -5,7 +5,6 @@ import Particle from "../Particle";
 import Type from "./Type";
 import {
   AiFillGithub,
-  AiOutlineTwitter,
   AiFillInstagram,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -19,7 +18,7 @@ function Home() {
         <Particle />
         <Container className="home-content">
           <Row>
-            <Col md={5} style={{ paddingBottom: 20, paddingLeft: 250 }}>
+            <Col md={5} style={{display:'flex', justifyContent:'right'}}>
               <img
                 src={portrait}
                 alt="pic of me"

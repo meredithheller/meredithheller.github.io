@@ -1,5 +1,5 @@
 html {
-  --section-background-color: white
+  --section-background-color: white;
 
   --image-gradient: linear-gradient(
     to bottom left,
@@ -260,6 +260,7 @@ button:focus {
   padding: 9rem 0 2rem !important;
   color: whitesmoke;
   text-align: left;
+  justify-content: center;
 }
 
 .heading {

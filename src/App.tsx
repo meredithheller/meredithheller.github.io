@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import Experience from "./components/Experience/Experience";
 import Projects from "./components/Projects/Projects";
-import Footer from "./components/Footer";
 import Currently from "./components/Currently/Currently";
 import {
   BrowserRouter as Router,
