@@ -32,3 +32,23 @@
   width: 100%;
   padding-top: 1rem;
 }
+
+.App-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0 3rem;
+}
+
+.App-footer a {
+  font-size: 2rem;
+  color: #2F3A4C;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.App-footer a:hover,
+.App-footer a:focus {
+  color: #493E32;
+  transform: translateY(-4px);
+}

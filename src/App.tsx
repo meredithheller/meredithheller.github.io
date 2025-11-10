@@ -3,6 +3,8 @@ import Timeline from "./components/Timeline/Timeline";
 import Filter from "./components/Filter/Filter";
 import { dummyTimelineData } from "./data/dummyTimelineData";
 import { TimelineCategory } from "./types/timeline";
+import { AiFillInstagram } from "react-icons/ai";
+import { FaPinterest, FaLinkedinIn } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -31,6 +33,32 @@ function App() {
         <div className="timeline-wrapper">
           <Timeline items={filteredItems} />
         </div>
+        <footer className="App-footer">
+          <a
+            href="https://www.instagram.com/meredithaheller/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <AiFillInstagram />
+          </a>
+          <a
+            href="https://www.pinterest.com/meredithaheller/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Pinterest"
+          >
+            <FaPinterest />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/meredith-heller/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn />
+          </a>
+        </footer>
       </main>
     </div>
   );
