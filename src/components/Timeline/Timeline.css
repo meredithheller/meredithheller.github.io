@@ -6,26 +6,11 @@
   position: relative;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: #4F6784 #D5E4F0;
+  scrollbar-width: none;
 }
 
 .timeline-container::-webkit-scrollbar {
-  height: 10px;
-}
-
-.timeline-container::-webkit-scrollbar-track {
-  background: #D5E4F0;
-  border-radius: 5px;
-}
-
-.timeline-container::-webkit-scrollbar-thumb {
-  background: #4F6784;
-  border-radius: 5px;
-}
-
-.timeline-container::-webkit-scrollbar-thumb:hover {
-  background: #2F3A4C;
+  display: none;
 }
 
 .timeline-scroll {
