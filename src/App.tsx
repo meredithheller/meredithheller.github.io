@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import Preloader from "./components/Pre";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
-import Experience from "./components/Experience/Experience";
-import Projects from "./components/Projects/Projects";
-import Currently from "./components/Currently/Currently";
+import ExperienceContainer from "./components/Experience/ExperienceContainer";
+import CurrentlyContainer from "./components/Currently/CurrentlyContainer";
 import {
   BrowserRouter as Router,
   Route,
@@ -35,9 +34,8 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/currently" element={<Currently />} />
+          <Route path="/experience" element={<ExperienceContainer />} />
+          <Route path="/currently" element={<CurrentlyContainer />} />
           <Route path="*" element={<Navigate to="/"/>} />
         </Routes>
       </div>

@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
 import {
+  AiOutlineCoffee,
   AiOutlineHome,
 } from "react-icons/ai";
 
@@ -51,38 +52,25 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            {/* <Nav.Item>
+            <Nav.Item>
               <Nav.Link
                 as={Link}
                 to="/experience"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> Experience
+                <CgFileDocument style={{ marginBottom: "2px" }} /> Experience
               </Nav.Link>
-            </Nav.Item> */}
-
-            {/* <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/projects"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Projects
-              </Nav.Link>
-            </Nav.Item> */}
-
+            </Nav.Item>
             <Nav.Item>
               <Nav.Link
                 as={Link}
                 to="/currently"
                 onClick={() => updateExpanded(false)}
               >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Experience
+                <AiOutlineCoffee style={{ marginBottom: "2px" }} /> Currently
               </Nav.Link>
             </Nav.Item>
+            
 
             <Nav.Item className="fork-btn">
               <Button
