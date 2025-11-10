@@ -8,9 +8,20 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ items }) => {
+  if (items.length === 0) {
+    return (
+      <div className="timeline-container">
+        <div className="timeline-empty">
+          <p>No items found for this filter.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="timeline-container">
       <div className="timeline-scroll">
+        <div className="timeline-line"></div>
         {items.map((item) => (
           <TimelineItem key={item.id} item={item} />
         ))}

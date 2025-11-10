@@ -12,6 +12,7 @@
   cursor: default;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
+  z-index: 2;
 }
 
 .timeline-item.clickable {
@@ -55,6 +56,14 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.timeline-item:hover .timeline-item-category-badge {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .timeline-item-content {

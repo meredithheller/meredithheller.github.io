@@ -1,4 +1,4 @@
-export type TimelineCategory = 'Listening' | 'Loving' | 'Building' | 'Reading' | 'Doing';
+export type TimelineCategory = 'Listening' | 'Loving' | 'Building' | 'Reading' | 'Doing' | 'Creating';
 
 export interface BaseTimelineItem {
   id: string;
@@ -38,5 +38,11 @@ export interface DoingItem extends BaseTimelineItem {
   // Title and description are custom
 }
 
-export type TimelineItem = ListeningItem | LovingItem | BuildingItem | ReadingItem | DoingItem;
+export interface CreatingItem extends BaseTimelineItem {
+  category: 'Creating';
+  // Image is from baking/creating ventures
+  // Title and description are custom
+}
+
+export type TimelineItem = ListeningItem | LovingItem | BuildingItem | ReadingItem | DoingItem | CreatingItem;
 

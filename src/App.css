@@ -1,6 +1,6 @@
 .App {
   min-height: 100vh;
-  background: linear-gradient(135deg, #D5E4F0 0%, #F8DBEE 100%);
+  background: #D5E4F0;
 }
 
 .App-header {
@@ -20,6 +20,15 @@
 }
 
 .App-main {
-  padding: 3rem 0;
+  padding: 0;
   min-height: calc(100vh - 120px);
+}
+
+.filter-wrapper {
+  padding: 1.5rem 2rem 0;
+}
+
+.timeline-wrapper {
+  width: 100%;
+  padding-top: 1rem;
 }

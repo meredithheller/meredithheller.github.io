@@ -19,6 +19,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item }) => {
         return '#493E32';
       case 'Doing':
         return '#D5E4F0';
+      case 'Creating':
+        return '#E8C5A0'; // Warm beige/tan for baking/creating
       default:
         return '#4F6784';
     }

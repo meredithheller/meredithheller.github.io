@@ -85,6 +85,22 @@ export const dummyTimelineData: TimelineItem[] = [
     description: 'Spent the afternoon at my favorite coffee shop working on a side project. There\'s something about the ambient noise that helps me focus.',
     image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400',
     date: '2024-03-05'
+  },
+  {
+    id: '11',
+    category: 'Creating',
+    title: 'Sourdough Bread Mastery',
+    description: 'Finally perfected my sourdough recipe after months of trial and error. The crust is perfectly golden and the crumb has beautiful air pockets. Nothing beats the smell of fresh bread in the morning!',
+    image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=400',
+    date: '2024-03-10'
+  },
+  {
+    id: '12',
+    category: 'Creating',
+    title: 'Chocolate Chip Cookies',
+    description: 'Baked a batch of my favorite chocolate chip cookies for a friend\'s birthday. Used dark chocolate chunks and a pinch of sea salt on top. They were gone within hours!',
+    image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400',
+    date: '2024-03-12'
   }
 ];
 
