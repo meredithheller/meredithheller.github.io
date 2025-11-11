@@ -4,9 +4,19 @@ import './TimelineItem.css';
 
 interface TimelineItemProps {
   item: TimelineItemType;
+  isHovered: boolean;
+  offset: number;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
-const TimelineItem: React.FC<TimelineItemProps> = ({ item }) => {
+const TimelineItem: React.FC<TimelineItemProps> = ({ 
+  item, 
+  isHovered, 
+  offset, 
+  onMouseEnter, 
+  onMouseLeave 
+}) => {
   const getCategoryColor = (category: TimelineItemType['category']): string => {
     switch (category) {
       case 'Listening':
@@ -37,11 +47,22 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item }) => {
   const isClickable = (item.category === 'Listening') || 
                      (item.category === 'Loving' && 'productLink' in item && item.productLink);
 
+  // Calculate transform: translate first (in original space), then scale if hovered
+  // This ensures offset is applied in the original coordinate system
+  const transform = isHovered 
+    ? `translateX(${offset}px) scale(1.15)` 
+    : `translateX(${offset}px) scale(1)`;
+
   return (
     <div 
-      className={`timeline-item ${isClickable ? 'clickable' : ''}`}
-      style={{ borderColor: getCategoryColor(item.category) }}
+      className={`timeline-item ${isClickable ? 'clickable' : ''} ${isHovered ? 'hovered' : ''}`}
+      style={{ 
+        borderColor: getCategoryColor(item.category),
+        transform: transform,
+      }}
       onClick={handleClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className="timeline-item-image-container">
         <img 
@@ -53,7 +74,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item }) => {
           }}
         />
         <div 
-          className="timeline-item-category-badge"
+          className={`timeline-item-category-badge ${isHovered ? 'hidden' : ''}`}
           style={{ backgroundColor: getCategoryColor(item.category) }}
         >
           {item.category}

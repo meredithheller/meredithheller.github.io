@@ -22,6 +22,7 @@
   position: relative;
   align-items: center;
   min-height: 500px;
+  overflow: visible;
 }
 
 .timeline-line {
@@ -30,10 +31,10 @@
   transform: translateY(-50%);
   left: 2rem; /* Match timeline-scroll padding */
   height: 3px;
-  background: linear-gradient(90deg, #4F6784 0%, #2F3A4C 100%);
+  background: linear-gradient(90deg, #D5E4F0 0%, #4F6784 100%);
   z-index: 1;
   right: 2rem; /* Match timeline-scroll padding on right */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   pointer-events: none; /* Allow clicks to pass through */
 }
 
@@ -51,7 +52,7 @@
 .timeline-empty {
   text-align: center;
   padding: 4rem 2rem;
-  color: #2F3A4C;
+  color: #D5E4F0;
   font-size: 1.2rem;
 }
 

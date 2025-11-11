@@ -1,14 +1,14 @@
 .App {
   min-height: 100vh;
-  background: #D5E4F0;
+  background: #2F3A4C;
 }
 
 .App-header {
-  background-color: #2F3A4C;
+  background-color: #4F6784;
   color: white;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .App-header h1 {
@@ -24,6 +24,19 @@
   min-height: calc(100vh - 120px);
 }
 
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .filter-wrapper {
   padding: 1.5rem 2rem 0;
 }
@@ -31,6 +44,8 @@
 .timeline-wrapper {
   width: 100%;
   padding-top: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .App-footer {
@@ -39,16 +54,20 @@
   align-items: center;
   gap: 1.5rem;
   padding: 2rem 0 3rem;
+  position: relative;
+  z-index: 10;
+  background: #2F3A4C;
+  margin-top: -1px; /* Prevent any overlap */
 }
 
 .App-footer a {
   font-size: 2rem;
-  color: #2F3A4C;
+  color: #D5E4F0;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .App-footer a:hover,
 .App-footer a:focus {
-  color: #493E32;
+  color: #F8DBEE;
   transform: translateY(-4px);
 }

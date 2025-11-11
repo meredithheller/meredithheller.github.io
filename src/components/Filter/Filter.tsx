@@ -70,7 +70,7 @@ const Filter: React.FC<FilterProps> = ({ selectedCategory, onCategoryChange }) =
             active={selectedCategory === null}
             className={selectedCategory === null ? 'active' : ''}
             style={{
-              borderLeft: `4px solid #2F3A4C`,
+              borderLeft: `4px solid #4F6784`,
             }}
           >
             Show All
