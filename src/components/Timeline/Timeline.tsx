@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { TimelineItem as TimelineItemType } from '../../types/timeline';
 import TimelineItem from './TimelineItem';
 import './Timeline.css';

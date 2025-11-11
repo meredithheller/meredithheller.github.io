@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Timeline from "./components/Timeline/Timeline";
 import Filter from "./components/Filter/Filter";
 import LoadingAnimation from "./components/LoadingAnimation/LoadingAnimation";
