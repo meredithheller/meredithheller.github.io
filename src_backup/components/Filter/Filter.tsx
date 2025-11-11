@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import type { TimelineCategory } from '../../types/timeline';
+import { TimelineCategory } from '../../types/timeline';
 import './Filter.css';
 
 interface FilterProps {

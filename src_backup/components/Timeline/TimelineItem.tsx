@@ -1,5 +1,5 @@
 import React from 'react';
-import type { TimelineItem as TimelineItemType } from '../../types/timeline';
+import { TimelineItem as TimelineItemType } from '../../types/timeline';
 import './TimelineItem.css';
 
 interface TimelineItemProps {

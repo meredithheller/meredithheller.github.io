@@ -3,7 +3,7 @@ import Timeline from "./components/Timeline/Timeline";
 import Filter from "./components/Filter/Filter";
 import LoadingAnimation from "./components/LoadingAnimation/LoadingAnimation";
 import { dummyTimelineData } from "./data/dummyTimelineData";
-import type { TimelineCategory } from "./types/timeline";
+import { TimelineCategory } from "./types/timeline";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaPinterest, FaLinkedinIn } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";

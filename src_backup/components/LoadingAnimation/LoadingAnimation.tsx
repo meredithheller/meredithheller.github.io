@@ -50,7 +50,7 @@ const LoadingAnimation = ({ onComplete }: LoadingAnimationProps) => {
             }}
             className="loading-text-middle"
           >
-            the collected proof of now or never
+            a collected proof of now or never
           </motion.p>
 
           {/* By Meredith Heller - slides in from left to bottom left corner */}
