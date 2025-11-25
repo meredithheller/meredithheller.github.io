@@ -1,0 +1,50 @@
+.landing-page-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #FAF8F3;
+}
+
+.landing-quote {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.landing-quote-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #4F6784;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .landing-quote-text {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-quote-text {
+    font-size: 2.25rem;
+  }
+}
+
