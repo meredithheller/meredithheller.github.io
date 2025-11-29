@@ -29,14 +29,22 @@ interface ConfettiParticlesProps {
 export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
   const startTimeRef = useRef<number>(0);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const scrollOffsetRef = useRef(0);
   const isDraggingRef = useRef(false);
   const lastXRef = useRef(0);
   const hasNotifiedSettledRef = useRef(false);
   const onSettledRef = useRef(onSettled);
   const onChipClickRef = useRef(onChipClick);
+  const particlesInitializedRef = useRef(false);
+  const canvasContextRef = useRef<CanvasRenderingContext2D | null>(null);
+
+  // Keep scrollOffset ref in sync with state for animation loop
+  useEffect(() => {
+    scrollOffsetRef.current = scrollOffset;
+  }, [scrollOffset]);
   
   // Fetch timeline chips from Supabase
   const { chips, isLoading } = useTimelineChips(80);
@@ -46,19 +54,22 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
     onChipClickRef.current = onChipClick;
   }, [onSettled, onChipClick]);
 
+  // Initialize particles only once when chips are loaded or after initial mount
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || particlesInitializedRef.current) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    // Only initialize particles when chips are loaded (or we've waited long enough for defaults)
+    // This prevents restarting the animation when chips load
+    if (isLoading && chips.length === 0) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    // Get or use existing canvas context
+    let ctx = canvasContextRef.current;
+    if (!ctx) {
+      ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      canvasContextRef.current = ctx;
+    }
 
     // Get category colors from chips or use defaults
     const getCategoryColor = (category?: string): string => {
@@ -117,6 +128,28 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
       return particle;
     });
 
+    particlesInitializedRef.current = true;
+    startTimeRef.current = 0; // Reset start time when particles are initialized
+  }, [chips, isLoading]);
+
+  // Separate effect for canvas setup and animation loop
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    
+    // Store context ref for particle initialization
+    canvasContextRef.current = ctx;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
     const gravity = 0.6;
     const bounce = 0.65;
     const friction = 0.985;
@@ -127,7 +160,7 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
       const mouseY = e.clientY - rect.top;
 
       particlesRef.current.forEach((particle) => {
-        const dx = mouseX - (particle.x + scrollOffset);
+        const dx = mouseX - (particle.x + scrollOffsetRef.current);
         const dy = mouseY - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         // Use 1.5x scale for hover detection to match the visual scale
@@ -148,7 +181,7 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
 
       // Find clicked particle
       const clickedParticle = particlesRef.current.find((particle) => {
-        const dx = mouseX - (particle.x + scrollOffset);
+        const dx = mouseX - (particle.x + scrollOffsetRef.current);
         const dy = mouseY - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const clickRadius = Math.max(particle.width, particle.height) * 1.5;
@@ -195,6 +228,12 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
     canvas.addEventListener("click", handleClick);
 
     const animate = (timestamp: number) => {
+      // Don't animate until particles are initialized
+      if (!particlesInitializedRef.current || particlesRef.current.length === 0) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       if (startTimeRef.current === 0) {
         startTimeRef.current = timestamp;
       }
@@ -223,7 +262,7 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
           const hoveredHeight = hoveredParticle.height * hoverScale;
           
           // Calculate distance between particle centers
-          const dx = (particle.x + scrollOffset) - (hoveredParticle.x + scrollOffset);
+          const dx = (particle.x + scrollOffsetRef.current) - (hoveredParticle.x + scrollOffsetRef.current);
           const dy = particle.y - hoveredParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
@@ -296,7 +335,7 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
         }
 
         ctx.save();
-        ctx.translate(particle.x + scrollOffset, particle.y);
+        ctx.translate(particle.x + scrollOffsetRef.current, particle.y);
         ctx.rotate(particle.rotation);
 
         if (particle.hovered) {
@@ -359,20 +398,23 @@ export function ConfettiParticles({ onSettled, onChipClick }: ConfettiParticlesP
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
+    // Start animation loop immediately - it will wait for particles to be ready
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      canvas.removeEventListener("mousemove", handleMouseMoveCanvas);
-      canvas.removeEventListener("mousedown", handleMouseDown);
-      canvas.removeEventListener("mouseup", handleMouseUp);
-      canvas.removeEventListener("mouseleave", handleMouseUp);
-      canvas.removeEventListener("click", handleClick);
+      if (canvas) {
+        canvas.removeEventListener("mousemove", handleMouseMoveCanvas);
+        canvas.removeEventListener("mousedown", handleMouseDown);
+        canvas.removeEventListener("mouseup", handleMouseUp);
+        canvas.removeEventListener("mouseleave", handleMouseUp);
+        canvas.removeEventListener("click", handleClick);
+      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [scrollOffset, chips, isLoading]);
+  }, []); // Empty dependency array - animation loop runs once and doesn't restart
 
   return <canvas ref={canvasRef} className="confetti-canvas" />;
 }
