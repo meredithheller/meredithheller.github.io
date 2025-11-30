@@ -1,0 +1,238 @@
+.main-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 10;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main-content-inner {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.personal-pitch {
+  flex: 0 1 55%;
+  min-width: 0;
+}
+
+.personal-pitch-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 2.5rem;
+  line-height: 1.6;
+  color: #1a2b4a;
+  margin: 0;
+  font-weight: 400;
+  text-align: right;
+}
+
+.tiles-container {
+  flex: 0 1 45%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.tile-quote {
+  max-width: 350px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.tiles-bottom-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  align-items: start;
+}
+
+.tile {
+  background: #1a2b4a;
+  border: 2px solid #1a2b4a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 43, 74, 0.3);
+}
+
+.tile-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.tile-read-listen {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.tile-socials {
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.tile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  width: auto;
+}
+
+.tile-socials .tile-content {
+  width: auto;
+}
+
+.tile-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FAF8F3;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tile-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 0.95rem;
+  color: #FAF8F3;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.socials-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 0;
+  width: 100%;
+  justify-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #FAF8F3;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.social-link:hover {
+  color: #FAF8F3;
+  background: rgba(250, 248, 243, 0.2);
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  font-size: 1.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon-shopmy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #FAF8F3;
+  color: #1a2b4a;
+  border-radius: 3px;
+}
+
+.social-link:hover .social-icon-shopmy {
+  background: #FAF8F3;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-content-inner {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .personal-pitch {
+    flex: none;
+    width: 100%;
+  }
+
+  .tiles-container {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .main-content-inner {
+    gap: 2rem;
+  }
+
+  .personal-pitch-text {
+    font-size: 1.75rem;
+    line-height: 1.6;
+  }
+
+  .tiles-container {
+    gap: 1rem;
+  }
+
+  .tiles-bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
+

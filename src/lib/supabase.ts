@@ -15,3 +15,4 @@ export const getAuthenticatedClient = () => {
   return supabase;
 };
 
+
