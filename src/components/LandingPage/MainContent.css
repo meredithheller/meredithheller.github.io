@@ -260,26 +260,73 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile and portrait orientation */
+@media (max-width: 768px), (orientation: portrait) and (max-height: 1000px) {
   .main-content {
     padding: 1.5rem;
+    align-items: flex-start;
+    overflow-y: auto;
   }
 
   .main-content-inner {
+    flex-direction: column;
     gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .personal-pitch {
+    flex: none;
+    width: 100%;
   }
 
   .personal-pitch-text {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     line-height: 1.6;
+    text-align: left;
   }
 
   .tiles-container {
-    gap: 1rem;
+    flex: none;
+    width: 100%;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .tile-quote {
+    max-width: 100%;
+    width: 100%;
   }
 
   .tiles-bottom-row {
     grid-template-columns: 1fr;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .tile-read-listen {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .tile-socials {
+    width: 100%;
+  }
+
+  .socials-list {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .personal-pitch-text {
+    font-size: 1.25rem;
+  }
+
+  .main-content {
+    padding: 1rem;
   }
 }
 
